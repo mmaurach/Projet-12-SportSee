@@ -1,0 +1,14 @@
+.button-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  background-color: #ffffff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.button-wrapper img {
+  width: 64px;
+}

@@ -1,0 +1,26 @@
+.sidebar-wrapper {
+  width: 11%;
+  min-height: 780px;
+  background-color: #020203;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 60px;
+}
+
+.sidebar-btn {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-top: 256px;
+}
+
+.sidebar-copyright {
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 500;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  margin-bottom: 60px;
+}
