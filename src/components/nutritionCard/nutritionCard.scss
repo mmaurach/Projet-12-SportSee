@@ -1,0 +1,52 @@
+.nutrition-card {
+  height: 124px;
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-left: 32px;
+}
+
+/* Carré icône */
+.nutrition-card__icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nutrition-card__icon img {
+  width: 60px;
+}
+
+/* Contenu texte */
+.nutrition-card__value {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.nutrition-card__label {
+  font-size: 14px;
+  color: #74798c;
+}
+
+/* ===== Variantes couleur ===== */
+
+.nutrition-card--calories .nutrition-card__icon {
+  background-color: rgba(253, 81, 129, 0.1);
+}
+
+.nutrition-card--proteine .nutrition-card__icon {
+  background-color: rgba(74, 184, 255, 0.1);
+}
+
+.nutrition-card--glucide .nutrition-card__icon {
+  background-color: rgba(249, 206, 35, 0.1);
+}
+
+.nutrition-card--lipide .nutrition-card__icon {
+  background-color: rgba(253, 81, 129, 0.1);
+}
