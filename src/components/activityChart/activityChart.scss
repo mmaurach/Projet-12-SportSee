@@ -1,0 +1,43 @@
+.activity-chart {
+  background-color: #fbfbfb;
+  border-radius: 5px;
+  padding: 24px;
+}
+
+.activity-chart__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 64px;
+}
+
+.activity-chart__header h2 {
+  font-size: 15px;
+}
+
+.activity-chart__legend {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.activity-chart__legend li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  color: #74798c;
+}
+
+.activity-chart__legend span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.black {
+  background-color: #282d30;
+}
+.red {
+  background-color: #e60000;
+}
