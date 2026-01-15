@@ -58,7 +58,7 @@ function ActivityChart() {
         </ul>
       </div>
 
-      <ResponsiveContainer width="100%" height={185}>
+      <ResponsiveContainer width="100%" height="100%">
         <BarChart data={activityData} barGap={8}>
           <CartesianGrid strokeDasharray="2" vertical={false} />
           <XAxis

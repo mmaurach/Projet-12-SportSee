@@ -1,0 +1,23 @@
+.average-sessions {
+  background-color: #ff0000;
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.average-sessions__title {
+  color: #ffffff;
+  opacity: 0.6;
+  font-size: 15px;
+  margin-bottom: 20px;
+}
+
+.average-sessions-tooltip {
+  background-color: #ffffff;
+  color: #000000;
+  padding: 6px 8px;
+  font-size: 8px;
+}

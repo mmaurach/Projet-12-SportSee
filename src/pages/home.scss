@@ -7,14 +7,30 @@
 
 .home-dashboard {
   width: 100%;
-  height: 75%;
+  flex: 1;
   display: flex;
-  flex-direction: row;
+  gap: 30px;
 }
 
 .home-charts-wrapper {
   width: 76%;
+  height: 100%;
   display: flex;
   flex-direction: column;
   gap: 30px;
+}
+
+.home-charts-wrapper > .activity-chart {
+  flex: 0 0 50%;
+}
+
+.bottom-charts-wrapper {
+  flex: 1 1 50%;
+  display: flex;
+  gap: 30px;
+}
+
+.bottom-charts-wrapper > * {
+  flex: 1;
+  height: 100%;
 }
