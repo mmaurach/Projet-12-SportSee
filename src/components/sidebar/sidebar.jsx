@@ -14,7 +14,9 @@ function Sidebar() {
         <Button imageBtn={velo} />
         <Button imageBtn={musculation} />
       </div>
-      <div className="sidebar-copyright">Copyright, SportSee 2020</div>
+      <div className="sidebar-copyright">
+        <p>Copyright, SportSee 2020</p>
+      </div>
     </section>
   );
 }

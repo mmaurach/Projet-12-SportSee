@@ -10,10 +10,12 @@ import Home from "./pages/home";
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <Header />
-      <div className="layout">
-        <Sidebar />
-        <Home />
+      <div className="wrapper">
+        <Header />
+        <div className="layout">
+          <Sidebar />
+          <Home /> 
+        </div>
       </div>
     </BrowserRouter>
   </React.StrictMode>

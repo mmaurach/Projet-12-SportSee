@@ -1,27 +1,34 @@
 .sidebar-wrapper {
-  width: 11%;
-  min-height: 780px;
+  width: 117px;
   background-color: #020203;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  padding-bottom: 60px;
   box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .sidebar-btn {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   gap: 20px;
-  padding-top: 256px;
+  flex: 1;
 }
 
 .sidebar-copyright {
+  width: 100%;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebar-copyright > p {
   color: #ffffff;
   font-size: 12px;
   font-weight: 500;
   transform: rotate(-90deg);
   white-space: nowrap;
-  margin-bottom: 60px;
+  text-align: center;
+
 }
