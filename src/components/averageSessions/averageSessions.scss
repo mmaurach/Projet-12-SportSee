@@ -1,23 +1,30 @@
 .average-sessions {
-  background-color: #ff0000;
-  border-radius: 5px;
   width: 100%;
   height: 100%;
-  padding: 20px;
-  box-sizing: border-box;
+  background-color: #ff0000;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
   position: relative;
 }
 
 .average-sessions__title {
   color: #ffffff;
-  opacity: 0.6;
   font-size: 15px;
-  margin-bottom: 20px;
+  line-height: 24px;
+  font-weight: 600;
+  margin: 20px 0 0 20px;
+  width: 150px;
+  opacity: 0.5;
 }
 
 .average-sessions-tooltip {
   background-color: #ffffff;
-  color: #000000;
-  padding: 6px 8px;
+  width: 45px;
+  height: 25px;
   font-size: 8px;
+  font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

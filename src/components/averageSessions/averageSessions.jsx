@@ -1,3 +1,4 @@
+import "./averageSessions.scss";
 import {
   LineChart,
   Line,
@@ -7,45 +8,68 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import { averageSessionsData } from "../../data/averageSessions";
-import "./averageSessions.scss";
-
-const CustomTooltip = ({ active, payload }) => {
-  if (active && payload && payload.length) {
-    return (
-      <div className="average-sessions-tooltip">{payload[0].value} min</div>
-    );
-  }
-  return null;
-};
 
 function AverageSessionsChart() {
-  const days = ["L", "M", "M", "J", "V", "S", "D"];
+  const weeklyDays = ["L", "M", "M", "J", "V", "S", "D"];
+  const formattedData = averageSessionsData.map((item, index) => ({
+    day: weeklyDays[index],
+    duree: item.sessionLength,
+  }));
+
+  const CustomTooltip = ({ active, payload }) => {
+    if (active && payload && payload.length) {
+      return (
+        <div className="average-sessions-tooltip">{payload[0].value} min</div>
+      );
+    }
+    return null;
+  };
 
   return (
     <div className="average-sessions">
-      <h3 className="average-sessions__title">Durée moyenne des sessions</h3>
+      <div className="average-sessions__title">Durée moyenne des sessions</div>
 
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={averageSessionsData}>
+        <LineChart
+          data={formattedData}
+          margin={{
+            top: 20,
+            bottom: 20,
+          }}
+        >
+          {/* Dégradé de la courbe */}
+          <defs>
+            <linearGradient id="sessionsGradient">
+              <stop offset="5%" stopColor="#ffffff" stopOpacity={0.45} />
+              <stop offset="50%" stopColor="#ffffff" stopOpacity={0.6} />
+              <stop offset="100%" stopColor="#ffffff" stopOpacity={0.9} />
+            </linearGradient>
+          </defs>
+
           <XAxis
             dataKey="day"
-            tickFormatter={(day) => days[day - 1]}
-            axisLine={false}
             tickLine={false}
-            tick={{ fill: "#FFFFFF", opacity: 0.6, fontSize: 12 }}
+            axisLine={false}
+            dy={10}
+            padding={{ left: 15, right: 15 }}
+            style={{
+              fontSize: "12px",
+              opacity: 0.66,
+              fill: "#ffffff",
+            }}
           />
 
-          <YAxis hide />
+          <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
 
-          <Tooltip content={<CustomTooltip />} />
+          <Tooltip content={CustomTooltip} cursor={false} />
 
           <Line
             type="monotone"
-            dataKey="sessionLength"
-            stroke="#FFFFFF"
+            dataKey="duree"
+            stroke="url(#sessionsGradient)"
             strokeWidth={2}
-            dot={false}
-            activeDot={{ r: 4 }}
+            dot={null}
+            activeDot={{ r: 4, fill: "#ffffff" }}
           />
         </LineChart>
       </ResponsiveContainer>
