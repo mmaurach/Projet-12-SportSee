@@ -7,6 +7,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  ReferenceLine,
 } from "recharts";
 
 import { activityData } from "../../data/activityData";
@@ -85,7 +86,20 @@ function ActivityChart() {
             content={RenderCustomizedLegend}
             height={50}
           />
-          <CartesianGrid strokeDasharray="3" vertical={false} horizontal />
+          {/* <CartesianGrid strokeDasharray="3 3" vertical={false} /> */}
+          <ReferenceLine
+            y={78}
+            yAxisId="kg"
+            stroke="#9B9EAC"
+            strokeDasharray="3 3"
+          />
+
+          <ReferenceLine
+            y={82}
+            yAxisId="kg"
+            stroke="#9B9EAC"
+            strokeDasharray="3 3"
+          />
           <XAxis
             dataKey="day"
             tickLine={false}
