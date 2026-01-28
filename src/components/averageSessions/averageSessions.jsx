@@ -37,7 +37,6 @@ function AverageSessionsChart() {
             bottom: 20,
           }}
         >
-          {/* Dégradé de la courbe */}
           <defs>
             <linearGradient id="sessionsGradient">
               <stop offset="5%" stopColor="#ffffff" stopOpacity={0.45} />

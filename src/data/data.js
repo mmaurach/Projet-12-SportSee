@@ -2,7 +2,7 @@ const USER_MAIN_DATA = [
   {
     id: 12,
     userInfos: {
-      firstName: "Karl",
+      firstName: "Karl_Mocked",
       lastName: "Dovineau",
       age: 31,
     },
@@ -17,7 +17,7 @@ const USER_MAIN_DATA = [
   {
     id: 18,
     userInfos: {
-      firstName: "Cecilia",
+      firstName: "Cecilia_Mocked",
       lastName: "Ratorez",
       age: 34,
     },
@@ -260,7 +260,7 @@ const USER_PERFORMANCE = [
   },
 ];
 
-module.exports = {
+export {
   USER_MAIN_DATA,
   USER_ACTIVITY,
   USER_AVERAGE_SESSIONS,
