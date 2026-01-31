@@ -6,13 +6,18 @@ import proteineIcon from "../../assets/proteine.png";
 import glucideIcon from "../../assets/glucide.png";
 import lipideIcon from "../../assets/lipide.png";
 
-function NutritionPanel() {
+function NutritionPanel({ nutrition }) {
+  if (!nutrition) return null;
+
+  const { calorieCount, proteinCount, carbohydrateCount, lipidCount } =
+    nutrition;
+
   return (
     <aside className="nutrition-panel">
       <NutritionCard
         type="calories"
         icon={caloriesIcon}
-        value={1930}
+        value={calorieCount}
         unit="kCal"
         label="Calories"
       />
@@ -20,7 +25,7 @@ function NutritionPanel() {
       <NutritionCard
         type="proteine"
         icon={proteineIcon}
-        value={155}
+        value={proteinCount}
         unit="g"
         label="Protéines"
       />
@@ -28,7 +33,7 @@ function NutritionPanel() {
       <NutritionCard
         type="glucide"
         icon={glucideIcon}
-        value={290}
+        value={carbohydrateCount}
         unit="g"
         label="Glucides"
       />
@@ -36,7 +41,7 @@ function NutritionPanel() {
       <NutritionCard
         type="lipide"
         icon={lipideIcon}
-        value={50}
+        value={lipidCount}
         unit="g"
         label="Lipides"
       />
