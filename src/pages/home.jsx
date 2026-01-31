@@ -6,17 +6,35 @@ import AverageSessionsChart from "../components/averageSessions/averageSessions"
 import ScoreChart from "../components/scoreChart/scoreChart";
 import PerformanceChart from "../components/performanceChart/performanceChart";
 
-import { getUser } from "../services/userService";
+import {
+  getUser,
+  getUserActivity,
+  getUserAverageSessions,
+  getUserPerformance,
+} from "../services/userService";
 import "./home.scss";
 
 function Home() {
-  const [user, setUser] = useState(null);
   const userId = 12; // ou 18
+  const [user, setUser] = useState(null);
+  const [activityData, setActivityData] = useState([]);
+  const [averageSessions, setAverageSessions] = useState([]);
+  const [performance, setPerformance] = useState([]);
 
   useEffect(() => {
     async function fetchUser() {
       const userData = await getUser(userId);
+      const activity = await getUserActivity(userId);
+      const sessions = await getUserAverageSessions(userId);
+      const performanceData = await getUserPerformance(userId);
+
+      // console.log("USER", userData);
+      // console.log("ACTIVITY", activity);
+
       setUser(userData);
+      setActivityData(activity);
+      setAverageSessions(sessions);
+      setPerformance(performanceData);
     }
 
     fetchUser();
@@ -29,14 +47,13 @@ function Home() {
   return (
     <section className="home-wrapper">
       <Greeting userName={user.firstName} />
-
       <div className="home-dashboard">
         <div className="home-charts-wrapper">
-          <ActivityChart />
+          <ActivityChart activity={activityData} />
           <div className="bottom-charts-wrapper">
-            <AverageSessionsChart />
-            <PerformanceChart />
-            <ScoreChart />
+            <AverageSessionsChart sessions={averageSessions} />
+            <PerformanceChart performance={performance} />
+            <ScoreChart score={user.score} />
           </div>
         </div>
         <NutritionPanel nutrition={user.keyData} />

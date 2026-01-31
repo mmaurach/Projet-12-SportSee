@@ -6,16 +6,16 @@ import {
 } from "recharts";
 import "./scoreChart.scss";
 
-const score = 0.7;
+function ScoreChart({ score }) {
+  if (score === undefined || score === null) return null;
 
-const scoreData = [
-  {
-    score,
-    fill: "#FF0000",
-  },
-];
+  const scoreData = [
+    {
+      score,
+      fill: "#FF0000",
+    },
+  ];
 
-function ScoreChart() {
   return (
     <div className="score">
       <h3 className="score__title">Score</h3>

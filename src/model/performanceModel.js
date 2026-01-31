@@ -1,8 +1,6 @@
 export default class PerformanceModel {
-  constructor(apiData) {
-    this.data = apiData.data.map((item) => ({
-      subject: apiData.kind[item.kind],
-      value: item.value,
-    }));
+  constructor(item, kind) {
+    this.subject = kind[item.kind];
+    this.value = item.value;
   }
 }
