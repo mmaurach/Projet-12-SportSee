@@ -14,7 +14,6 @@ import "./activityChart.scss";
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
     const kilogram = payload.find((item) => item.dataKey === "kilogram")?.value;
-
     const calories = payload.find((item) => item.dataKey === "calories")?.value;
 
     return (
@@ -57,6 +56,10 @@ const RenderCustomizedLegend = () => (
 
 function ActivityChart({ activity }) {
   if (!activity || activity.length === 0) return null;
+  const weights = activity.map((item) => item.kilogram);
+  const minWeight = Math.min(...weights);
+  const maxWeight = Math.max(...weights);
+  const middleWeight = Math.round((minWeight + maxWeight) / 2);
 
   return (
     <div className="activity-chart">
@@ -76,26 +79,25 @@ function ActivityChart({ activity }) {
             content={RenderCustomizedLegend}
             height={50}
           />
-
           <ReferenceLine
-            y={78}
+            y={maxWeight + 2}
             yAxisId="kg"
             stroke="#9B9EAC"
             strokeDasharray="3 3"
           />
           <ReferenceLine
-            y={82}
+            y={middleWeight}
             yAxisId="kg"
             stroke="#9B9EAC"
             strokeDasharray="3 3"
           />
-
           <XAxis
             dataKey="day"
             tickLine={false}
             axisLine={{ stroke: "#d1d2d6" }}
             dy={15}
             tick={{ fill: "#9B9EAC", fontSize: 14 }}
+            tickFormatter={(day, index) => index + 1}
           />
 
           <YAxis
@@ -104,8 +106,9 @@ function ActivityChart({ activity }) {
             axisLine={false}
             tickLine={false}
             dx={25}
-            domain={["dataMin -1", "dataMax +2"]}
+            domain={[minWeight - 1, maxWeight + 2]}
             tick={{ fill: "#9B9EAC", fontSize: 14 }}
+            ticks={[minWeight - 1, middleWeight, maxWeight + 2]}
           />
 
           <YAxis yAxisId="cal" hide />

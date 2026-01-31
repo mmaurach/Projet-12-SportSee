@@ -25,8 +25,8 @@ function ScoreChart({ score }) {
           data={scoreData}
           startAngle={90}
           endAngle={450}
-          innerRadius="65%"
-          outerRadius="75%"
+          innerRadius="70%"
+          outerRadius="80%"
         >
           <PolarAngleAxis type="number" domain={[0, 1]} tick={false} />
 
