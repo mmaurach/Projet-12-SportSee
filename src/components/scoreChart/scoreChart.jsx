@@ -27,6 +27,8 @@ function ScoreChart({ score }) {
           endAngle={450}
           innerRadius="70%"
           outerRadius="80%"
+          cornerRadius={20}
+          style={{ zIndex: "2", position: "absolute" }}
         >
           <PolarAngleAxis type="number" domain={[0, 1]} tick={false} />
 

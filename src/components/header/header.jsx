@@ -13,7 +13,7 @@ function Header() {
         <NavLink to="/" className="header__link">
           Accueil
         </NavLink>
-        <NavLink to="/profile" className="header__link">
+        <NavLink to="/user/18" className="header__link">
           Profil
         </NavLink>
         <NavLink to="/settings" className="header__link">

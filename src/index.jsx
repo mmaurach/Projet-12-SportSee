@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.scss";
 
 import Header from "./components/header/header";
@@ -14,9 +14,12 @@ ReactDOM.createRoot(document.getElementById("root")).render(
         <Header />
         <div className="layout">
           <Sidebar />
-          <Home /> 
+          <Routes>
+            <Route path="/" element={<Navigate to="/user/12" />} />
+            <Route path="/user/:id" element={<Home />} />
+          </Routes>
         </div>
       </div>
     </BrowserRouter>
-  </React.StrictMode>
+  </React.StrictMode>,
 );

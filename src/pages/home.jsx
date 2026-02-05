@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
 import Greeting from "../components/greeting/greeting";
 import NutritionPanel from "../components/nutritionPanel/nutritionPanel";
 import ActivityChart from "../components/activityChart/activityChart";
@@ -15,7 +16,8 @@ import {
 import "./home.scss";
 
 function Home() {
-  const userId = 12; // ou 18
+  const { id } = useParams();
+  const userId = Number(id);
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState([]);
   const [averageSessions, setAverageSessions] = useState([]);
@@ -38,7 +40,7 @@ function Home() {
     }
 
     fetchUser();
-  }, []);
+  }, [userId]);
 
   if (!user) {
     return <div>Chargement...</div>;

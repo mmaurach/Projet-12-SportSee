@@ -32,7 +32,10 @@ function AverageSessionsChart({ sessions }) {
       <div className="average-sessions__title">Durée moyenne des sessions</div>
 
       <ResponsiveContainer width="100%" height="100%">
-        <LineChart data={formattedData} margin={{ top: 20, bottom: 20 }}>
+        <LineChart
+          data={formattedData}
+          margin={{ top: 20, bottom: 20, left: 0, right: 0 }}
+        >
           <defs>
             <linearGradient id="sessionsGradient">
               <stop offset="5%" stopColor="#ffffff" stopOpacity={0.45} />
@@ -45,7 +48,7 @@ function AverageSessionsChart({ sessions }) {
             dataKey="day"
             tickLine={false}
             axisLine={false}
-            dy={10}
+            tickMargin={10}
             padding={{ left: 15, right: 15 }}
             style={{
               fontSize: "12px",
