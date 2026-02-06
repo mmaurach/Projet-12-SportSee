@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Navigate, useNavigate } from "react-router-dom";
+
 import Greeting from "../components/greeting/greeting";
 import NutritionPanel from "../components/nutritionPanel/nutritionPanel";
 import ActivityChart from "../components/activityChart/activityChart";
@@ -13,35 +14,54 @@ import {
   getUserAverageSessions,
   getUserPerformance,
 } from "../services/userService";
+
 import "./home.scss";
 
 function Home() {
   const { id } = useParams();
+  const navigate = useNavigate();
+
   const userId = Number(id);
+
   const [user, setUser] = useState(null);
   const [activityData, setActivityData] = useState([]);
   const [averageSessions, setAverageSessions] = useState([]);
   const [performance, setPerformance] = useState([]);
 
+  const allowedUsers = [12, 18];
+  const isValidUser = allowedUsers.includes(userId);
+
   useEffect(() => {
+    if (!isValidUser) {
+      navigate("/error", { replace: true });
+      return;
+    }
+
     async function fetchUser() {
-      const userData = await getUser(userId);
-      const activity = await getUserActivity(userId);
-      const sessions = await getUserAverageSessions(userId);
-      const performanceData = await getUserPerformance(userId);
+      try {
+        const userData = await getUser(userId);
+        const activity = await getUserActivity(userId);
+        const sessions = await getUserAverageSessions(userId);
+        const performanceData = await getUserPerformance(userId);
 
-      // console.log("USER", userData);
-      // console.log("ACTIVITY", activity);
+        if (!userData) {
+          throw new Error("User not found");
+        }
 
-      setUser(userData);
-      setActivityData(activity);
-      setAverageSessions(sessions);
-      setPerformance(performanceData);
+        setUser(userData);
+        setActivityData(activity);
+        setAverageSessions(sessions);
+        setPerformance(performanceData);
+      } catch (error) {
+        console.error(error);
+        navigate("/error", { replace: true });
+      }
     }
 
     fetchUser();
-  }, [userId]);
+  }, [userId, isValidUser, navigate]);
 
+  // Loader
   if (!user) {
     return <div>Chargement...</div>;
   }
@@ -49,15 +69,18 @@ function Home() {
   return (
     <section className="home-wrapper">
       <Greeting userName={user.firstName} />
+
       <div className="home-dashboard">
         <div className="home-charts-wrapper">
           <ActivityChart activity={activityData} />
+
           <div className="bottom-charts-wrapper">
             <AverageSessionsChart sessions={averageSessions} />
             <PerformanceChart performance={performance} />
             <ScoreChart score={user.score} />
           </div>
         </div>
+
         <NutritionPanel nutrition={user.keyData} />
       </div>
     </section>
