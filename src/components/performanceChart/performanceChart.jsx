@@ -31,9 +31,15 @@ function PerformanceChart({ performance }) {
   return (
     <div className="performance">
       <ResponsiveContainer width="100%" height="100%">
-        <RadarChart data={formattedData} cx="50%" cy="50%" outerRadius="75%">
+        <RadarChart
+          data={formattedData}
+          cx="50%"
+          cy="50%"
+          outerRadius="60%"
+          margin={{ right: 20, left: 20 }}
+        >
           <PolarGrid radialLines={false} />
-          <PolarAngleAxis dataKey="subject" tick={CustomTick} />
+          <PolarAngleAxis dataKey="subject" tick={CustomTick} tickSize={13} />
           <Radar
             dataKey="value"
             stroke="#FF0101"

@@ -40,3 +40,11 @@
   color: #74798c;
   line-height: 1.4;
 }
+
+@media screen and (max-width: 1024px) and (max-height: 780px) {
+  .score__title {
+    top: 16px;
+    left: 20px;
+    font-size: 15px;
+  }
+}

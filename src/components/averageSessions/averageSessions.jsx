@@ -17,15 +17,35 @@ const CustomTooltip = ({ active, payload }) => {
   return null;
 };
 
+const CustomCursor = ({ points, width, height }) => {
+  if (!points || !points.length) return null;
+
+  const x = points[0].x;
+
+  return (
+    <rect
+      x={x}
+      y={-20}
+      width={width - x}
+      height={height + 100}
+      fill="rgba(0, 0, 0, 0.1)"
+    />
+  );
+};
+
 function AverageSessionsChart({ sessions }) {
   if (!sessions || sessions.length === 0) return null;
 
   const weeklyDays = ["L", "M", "M", "J", "V", "S", "D"];
 
-  const formattedData = sessions.map((session, index) => ({
-    day: weeklyDays[index],
-    duree: session.duree,
-  }));
+  const formattedData = [
+    { day: "", duree: sessions[0].duree },
+    ...sessions.map((session, index) => ({
+      day: weeklyDays[index],
+      duree: session.duree,
+    })),
+    { day: "", duree: sessions[sessions.length - 1].duree },
+  ];
 
   return (
     <div className="average-sessions">
@@ -49,7 +69,6 @@ function AverageSessionsChart({ sessions }) {
             tickLine={false}
             axisLine={false}
             tickMargin={10}
-            padding={{ left: 15, right: 15 }}
             style={{
               fontSize: "12px",
               opacity: 0.66,
@@ -59,7 +78,7 @@ function AverageSessionsChart({ sessions }) {
 
           <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
 
-          <Tooltip content={<CustomTooltip />} cursor={false} />
+          <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
 
           <Line
             type="monotone"
