@@ -6,6 +6,7 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
+  Rectangle,
 } from "recharts";
 
 const CustomTooltip = ({ active, payload }) => {
@@ -20,14 +21,13 @@ const CustomTooltip = ({ active, payload }) => {
 const CustomCursor = ({ points, width, height }) => {
   if (!points || !points.length) return null;
 
-  const x = points[0].x;
-
+const { x, y } = points[0];
   return (
-    <rect
+    <Rectangle
       x={x}
-      y={-20}
-      width={width - x}
-      height={height + 100}
+      y={y}
+      width={width}
+      height={height * 100}
       fill="rgba(0, 0, 0, 0.1)"
     />
   );
@@ -54,7 +54,7 @@ function AverageSessionsChart({ sessions }) {
       <ResponsiveContainer width="100%" height="100%">
         <LineChart
           data={formattedData}
-          margin={{ top: 20, bottom: 20, left: 0, right: 0 }}
+          margin={{ top: 0, bottom: 20, left: 0, right: 0 }}
         >
           <defs>
             <linearGradient id="sessionsGradient">
@@ -76,7 +76,7 @@ function AverageSessionsChart({ sessions }) {
             }}
           />
 
-          <YAxis hide domain={["dataMin - 1", "dataMax + 1"]} />
+          <YAxis hide domain={["dataMin - 3", "dataMax + 30"]} />
 
           <Tooltip content={<CustomTooltip />} cursor={<CustomCursor />} />
 
