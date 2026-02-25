@@ -19,7 +19,7 @@ const CustomTooltip = ({ active, payload }) => {
     return (
       <div
         style={{
-          width: "45px",
+          width: "55px",
           height: "75px",
           backgroundColor: "#E60000",
           color: "#FFFFFF",
@@ -28,7 +28,7 @@ const CustomTooltip = ({ active, payload }) => {
           justifyContent: "center",
           alignItems: "center",
           gap: "4px",
-          fontSize: "10px",
+          fontSize: "12px",
           fontWeight: 500,
         }}
       >

@@ -11,17 +11,23 @@ import {
 
 const CustomTooltip = ({ active, payload }) => {
   if (active && payload && payload.length) {
+    const data = payload[0].payload;
+
+    //Ne rien afficher si c’est un fake point
+    if (!data.dayLabel) return null;
+
     return (
       <div className="average-sessions-tooltip">{payload[0].value} min</div>
     );
   }
+
   return null;
 };
 
 const CustomCursor = ({ points, width, height }) => {
   if (!points || !points.length) return null;
 
-const { x, y } = points[0];
+  const { x, y } = points[0];
   return (
     <Rectangle
       x={x}
@@ -39,12 +45,17 @@ function AverageSessionsChart({ sessions }) {
   const weeklyDays = ["L", "M", "M", "J", "V", "S", "D"];
 
   const formattedData = [
-    { day: "", duree: sessions[0].duree },
+    { index: 0, dayLabel: "", duree: sessions[0].duree },
     ...sessions.map((session, index) => ({
-      day: weeklyDays[index],
+      index: index + 1,
+      dayLabel: weeklyDays[index],
       duree: session.duree,
     })),
-    { day: "", duree: sessions[sessions.length - 1].duree },
+    {
+      index: sessions.length + 1,
+      dayLabel: "",
+      duree: sessions[sessions.length - 1].duree,
+    },
   ];
 
   return (
@@ -65,7 +76,10 @@ function AverageSessionsChart({ sessions }) {
           </defs>
 
           <XAxis
-            dataKey="day"
+            dataKey="index"
+            tickFormatter={(value) =>
+              formattedData.find((d) => d.index === value)?.dayLabel
+            }
             tickLine={false}
             axisLine={false}
             tickMargin={10}

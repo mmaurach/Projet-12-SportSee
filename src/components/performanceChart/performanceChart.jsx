@@ -4,6 +4,7 @@ import {
   PolarGrid,
   PolarAngleAxis,
   ResponsiveContainer,
+  Tooltip,
 } from "recharts";
 import "./performanceChart.scss";
 
@@ -23,6 +24,25 @@ const CustomTick = ({ payload, x, y, textAnchor }) => (
   </g>
 );
 
+const CustomTooltip = ({ active, payload }) => {
+  if (active && payload && payload.length) {
+    return (
+      <div
+        style={{
+          backgroundColor: "#FFFFFF",
+          padding: "5px 10px",
+          fontSize: "12px",
+          fontWeight: 500,
+        }}
+      >
+        {payload[0].value}
+      </div>
+    );
+  }
+
+  return null;
+};
+
 function PerformanceChart({ performance }) {
   if (!performance || performance.length === 0) return null;
 
@@ -40,6 +60,7 @@ function PerformanceChart({ performance }) {
         >
           <PolarGrid radialLines={false} />
           <PolarAngleAxis dataKey="subject" tick={CustomTick} tickSize={13} />
+          <Tooltip content={<CustomTooltip />} cursor={false} />
           <Radar
             dataKey="value"
             stroke="#FF0101"
