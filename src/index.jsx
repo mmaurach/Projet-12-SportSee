@@ -7,6 +7,7 @@ import Header from "./components/header/header";
 import Sidebar from "./components/sidebar/sidebar";
 import Home from "./pages/home";
 import Error from "./pages/error";
+import BackendError from "./pages/backend_error";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -19,6 +20,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/" element={<Navigate to="/user/12" />} />
             <Route path="/user/:id" element={<Home />} />
             <Route path="/error" element={<Error />} />
+            <Route path="/server-error" element={<BackendError />} />
             <Route path="*" element={<Navigate to="/error" replace />} />
           </Routes>
         </div>

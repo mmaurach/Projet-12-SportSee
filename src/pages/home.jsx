@@ -53,8 +53,8 @@ function Home() {
         setAverageSessions(sessions);
         setPerformance(performanceData);
       } catch (error) {
-        console.error(error);
-        navigate("/error", { replace: true });
+        console.error("Backend error:", error);
+        navigate("/server-error");
       }
     }
 

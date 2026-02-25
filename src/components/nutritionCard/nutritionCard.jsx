@@ -9,7 +9,7 @@ function NutritionCard({ icon, value, unit, label, type }) {
 
       <div className="nutrition-card__content">
         <p className="nutrition-card__value">
-          {value}
+          {value.toLocaleString("en-US")}
           {unit}
         </p>
         <p className="nutrition-card__label">{label}</p>
